@@ -39,7 +39,7 @@ class ForegroundService : Service() {
     private fun buildNotification() {
         val stop = "stop"
         val broadcastIntent = PendingIntent.getBroadcast(
-            this, 0, Intent(stop), PendingIntent.FLAG_UPDATE_CURRENT
+            this, 0, Intent(stop), PendingIntent.FLAG_IMMUTABLE
         )
 
         // Create the persistent notification
@@ -59,7 +59,12 @@ class ForegroundService : Service() {
             val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }
-        startForeground(1, builder.build())
+        try{
+            startForeground(1, builder.build())
+        } catch (e: Exception) {
+
+        }
+
     }
 
     private fun requestLocationUpdates() {

@@ -41,7 +41,6 @@ class ForegroundService : Service() {
         val broadcastIntent = PendingIntent.getBroadcast(
             this, 0, Intent(stop), PendingIntent.FLAG_IMMUTABLE
         )
-
         // Create the persistent notification
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("BackgroundTasksPeriodical")
